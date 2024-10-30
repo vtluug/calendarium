@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-OUTPUT = "/tmp/vtluug-calendar.html"
 
 def template_replace(r, subs):
     for sub in subs.keys():
@@ -7,7 +6,12 @@ def template_replace(r, subs):
     return r
 
 from sys import argv, exit, modules
-import json, os, datetime 
+import json, os, datetime, yaml
+
+OUTPUT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "config.yml"))
+with open(OUTPUT, "r") as f:
+    OUTPUT = yaml.safe_load(f.read())
+OUTPUT = OUTPUT["calendar-output-path"]
 
 past = ""
 upcoming = ""
