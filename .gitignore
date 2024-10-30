@@ -1,0 +1,6 @@
+calendar/past/*
+calendar/upcoming/*
+calendar/manifest.json
+
+hooks/always/*
+hooks/days-before-once/*
