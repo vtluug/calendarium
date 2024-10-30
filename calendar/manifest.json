@@ -1,0 +1,24 @@
+{
+    "calendar/past/2024/oct/23/meeting.yml": {
+        "time": 1900,
+        "location": "McBryde 240",
+        "subject": "First meeting of the semester; Intro to VTLUUG!",
+        "presenter": "rsk",
+        "email": "rishik@vt.edu",
+        "description": "Discussing VTLUUG past, present, and future.\nslides @ https://vtluug.org/files/2024/rsk-intro/intro.pdf",
+        "upcoming": false,
+        "datetime": 1729724400,
+        "hooked": []
+    },
+    "calendar/upcoming/2024/oct/30/meeting.yml": {
+        "time": 1900,
+        "location": "McBryde 240",
+        "subject": "Funding, CS Afilliation, and server room field trip!",
+        "presenter": "rsk",
+        "email": "rishik@vt.edu",
+        "description": "We will briefly meet in MCB 240, before moving to the TOP SECRET seventh floor of Whittemore hall \nto pay a visit to the VTLUUG/WUVT server rack.\nItems up for general discussion:\n+ Funding -- how much we have, and what to spend it on.\n+ Colo in WHIT is a pain in a post-jkh world. would CS help?\n+ server happy happy playtime",
+        "upcoming": true,
+        "datetime": 1730329200,
+        "hooked": []
+    }
+}

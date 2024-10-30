@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>calendarium</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<style>
+
+body
+{
+    margin: 0px;
+    font-family: 'noto sans';
+    background-color: #eee;
+    border: 1px solid black;
+    height: 100vh;
+    width: 100vw;
+    overflow-y: scroll;
+}
+
+.event
+{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+    padding: 1em;
+    background-color: #841c44;
+    border-radius: 1em;
+    color: #fff;
+    text-align: left !important;
+}
+
+.datetime
+{
+    width: 100%;
+    text-align: center;
+}
+
+emp 
+{
+    color: #f7b04e;
+}
+
+#dropdown
+{
+    text-align: center;
+}
+
+hr 
+{
+    color: #f7901e;
+}
+
+</style>
+</head>
+<body>
+
+<div class="events">
+    <details id="dropdown"><summary>Show Past Events</summary>
+        $$past$$
+    </details>
+
+    $$upcoming$$
+</div>
+</body>
+</html>
