@@ -80,6 +80,8 @@ for e in past_manifest + upcoming_manifest:
     entry["upcoming"] = upcoming == "upcoming"
     entry["datetime"] = int(dtime.timestamp())
     entry["hooked"] = []
+    e = e.replace("/upcoming/", "/aaa/")
+    e = e.replace("/past/", "/aaa/")
     manifest[e] = entry
 
 with open(manifest_path, "w") as f:
