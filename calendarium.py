@@ -56,7 +56,12 @@ for e in past_manifest + upcoming_manifest:
     if manifest.get(e) is not None: continue
     e = e.replace("//", "/").replace("//", "/").replace("//", "/") #f1x shit hack
 
-    x, upcoming, year, month, day, name = e.split("/")
+    exp = e.split("/")
+    upcoming = exp[-5]
+    year = exp[-4]
+    month = exp[-3]
+    day = exp[-2]
+    name = exp[-1]
     
     with open(e, "r") as f:
         info = yaml.safe_load(f.read())
