@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from sys import argv, exit, modules
-import datetime, os, json, yaml, subprocess
+import datetime, os, json, yaml, subprocess, shutil
 
 try: calendar = argv[1]
 except:
@@ -70,6 +70,11 @@ for e in past_manifest + upcoming_manifest:
     minute = info["time"] % 100
 
     dtime = datetime.datetime(int(year), mapping.index(month)+1, int(day), hour, minute)
+    if dtime < now and upcoming == "upcoming":
+        ee = e.replace("/upcoming/", "/past/")
+        ee = os.path.dirname(ee)
+        os.makedirs(ee, exist_ok=True)
+        shutil.move(os.path.dirname(e), os.abspath(os.path.join(ee, "..")))
 
     entry = info
     entry["upcoming"] = upcoming == "upcoming"
