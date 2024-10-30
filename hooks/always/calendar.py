@@ -16,7 +16,7 @@ OUTPUT = OUTPUT["calendar-output-path"]
 past = ""
 upcoming = ""
 
-templates = os.path.dirname(os.path.abspath(argv[1]))+"/util/template"
+templates = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "util", "template"))
 
 fevent = open(templates+"/event.html", "r")
 fevents = open(templates+"/events.html", "r")
