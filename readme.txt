@@ -9,6 +9,7 @@ does the following:
   script in hooks/days/before/once/N/ with the manifest path in the first argument, and updates the 
   - each called event gets added to the manifest event's hooked list (see below) and is ignored for
     subsequent matching runs
+- moves the day folder from upcoming/ to past/ if the time of the event has lapsed
 
 the intended deployment is a cronjob that periodically calls the script. for VTLUUG, the calendar path
   can be in /nfs/cistern/share/calendar, or somewhere else everyone can access.
