@@ -33,7 +33,7 @@ the filesystem formats follow this pattern:
   - possible hooks
     - twitter/insta/etc integration for posting meeting reminders etc.
 
-some sample events (and the related manifest) are included ;^)
+some sample events are included ;^)
 
 the manifest.json follows this format:
 

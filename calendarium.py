@@ -77,5 +77,9 @@ with open(manifest_path, "w") as f:
 
 hooks = os.path.dirname(os.path.abspath(__file__))+"/hooks"
 
+if not os.path.exists(hooks+"/config.yml"):
+    with open(hooks+"/config.yml", "w") as f:
+        f.write(yaml.safe_dump({"calendar-output-path": "/tmp/vtluug-calendar.html"}))
+
 for script in os.listdir(hooks+"/always"):
     subprocess.run([f"{hooks}/always/{script}", os.path.abspath(calendar+"/manifest.json")])

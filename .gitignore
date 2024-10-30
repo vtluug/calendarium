@@ -4,3 +4,4 @@ calendar/manifest.json
 
 hooks/always/*
 hooks/days-before-once/*
+hooks/config.yml
