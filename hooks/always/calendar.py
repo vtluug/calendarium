@@ -28,6 +28,7 @@ with open(argv[1], "r") as f:
     events = json.loads(f.read())
     for e in events.values():
         e["datetime"] = datetime.datetime.fromtimestamp(int(e["datetime"]))
+        e["description"] = e["description"].replace("\n", "<br>")
         if e["upcoming"]: upcoming += template_replace(revent, e)
         else: past += template_replace(revent, e)
 
