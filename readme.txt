@@ -11,8 +11,8 @@ does the following:
     subsequent matching runs
 - moves the day folder from upcoming/ to past/ if the time of the event has lapsed
 
-the intended deployment is a cronjob that periodically calls the script. for VTLUUG, the calendar path
-  can be in /nfs/cistern/share/calendar, or somewhere else everyone can access.
+the intended deployment is a cronjob that periodically calls the script.
+for VTLUUG in particular, you can edit it at /nfs/cistern/share/calendar
 
 
 the filesystem formats follow this pattern:
@@ -33,12 +33,15 @@ the filesystem formats follow this pattern:
     - calendar.py generates the calendar.html to embed places
   - possible hooks
     - twitter/insta/etc integration for posting meeting reminders etc.
+    - automagically generate a wiki page for the meeting, setting Next_meeting, making last_meeting
+      backlinks, etc.
+    - google calendar? the listserv? the possibilities are endless
 
 some sample events are included ;^)
 
 the manifest.json follows this format:
 
-calendar/upcoming|past/2024/oct/30/meeting.yml => {
+calendar/aaa/2024/oct/30/meeting.yml => {
     "upcoming": true/false, whether the event has happened already,
     "datetime": unix timestamp,
     "location": "e.g. McBryde 240",

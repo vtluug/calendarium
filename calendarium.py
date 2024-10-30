@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from sys import argv, exit, modules
-import datetime, os, json, yaml, subprocess, shutil
+import datetime, os, json, yaml, subprocess, shutil, glob
 
 try: calendar = argv[1]
 except:
@@ -53,8 +53,10 @@ with open(manifest_path, "r") as f:
     manifest = json.loads(f.read())
 
 for e in past_manifest + upcoming_manifest:
-    if manifest.get(e) is not None: continue
     e = e.replace("//", "/").replace("//", "/").replace("//", "/") #f1x shit hack
+    e = e.replace("/upcoming/", "/aaa/")
+    e = e.replace("/past/", "/aaa/")
+    if manifest.get(e) is not None: continue
 
     exp = e.split("/")
     upcoming = exp[-5]
@@ -80,8 +82,6 @@ for e in past_manifest + upcoming_manifest:
     entry["upcoming"] = upcoming == "upcoming"
     entry["datetime"] = int(dtime.timestamp())
     entry["hooked"] = []
-    e = e.replace("/upcoming/", "/aaa/")
-    e = e.replace("/past/", "/aaa/")
     manifest[e] = entry
 
 with open(manifest_path, "w") as f:
@@ -91,7 +91,14 @@ hooks = os.path.dirname(os.path.abspath(__file__))+"/hooks"
 
 if not os.path.exists(hooks+"/config.yml"):
     with open(hooks+"/config.yml", "w") as f:
-        f.write(yaml.safe_dump({"calendar-output-path": "/tmp/vtluug-calendar.html"}))
+        f.write(yaml.safe_dump({
+            "calendar-output-path": "/tmp/vtluug-calendar.html",
+            "mediawiki-username": "u",
+            "mediawiki-passwd": "p"
+            }))
 
 for script in os.listdir(hooks+"/always"):
     subprocess.run([f"{hooks}/always/{script}", os.path.abspath(calendar+"/manifest.json")])
+
+for script in glob.glob(hooks+"/days-before/**/*.*"):
+    subprocess.run([script, os.path.abspath(calendar+"/manifest.json")])
