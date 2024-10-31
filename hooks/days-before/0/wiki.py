@@ -76,7 +76,8 @@ Last Meeting: [[$$prevmeeting$$]]
 
 Upcoming Meeting: [[Next_meeting]]"""
     text = text.replace("$$prevmeeting$$", prevmeeting)
-    page.edit(text, "calendarium was here")
+    if not page.exists:
+        page.edit(text, "calendarium was here")
 
 
 # how many days before we're looking for
@@ -88,6 +89,7 @@ with open(sys.argv[1], "r") as f:
     events = json.loads(f.read())
     for sig, e in events.items():
         if "wiki" in e["hooked"]: continue # if we've run once don't go again
+        if "/past/" in sig: continue
         then = datetime.datetime.fromtimestamp(int(e["datetime"])).date()
         now = datetime.date.today()
         if now == (then - datetime.timedelta(days=N)):

@@ -53,9 +53,12 @@ with open(manifest_path, "r") as f:
     manifest = json.loads(f.read())
 
 for e in past_manifest + upcoming_manifest:
+    if not os.path.exists(e) or not e.endswith(".yml"):
+        if manifest.get(e): manifest.pop(e)
+        continue
     e = e.replace("//", "/").replace("//", "/").replace("//", "/") #f1x shit hack
-    e = e.replace("/upcoming/", "/aaa/")
-    e = e.replace("/past/", "/aaa/")
+    #e = e.replace("/upcoming/", "/aaa/")
+    #e = e.replace("/past/", "/aaa/")
     if manifest.get(e) is not None: continue
 
     exp = e.split("/")
@@ -75,14 +78,21 @@ for e in past_manifest + upcoming_manifest:
     if dtime < now and upcoming == "upcoming":
         ee = e.replace("/upcoming/", "/past/")
         ee = os.path.dirname(ee)
-        os.makedirs(ee, exist_ok=True)
-        shutil.move(os.path.dirname(e), os.abspath(os.path.join(ee, "..")))
+        os.makedirs(os.path.dirname(ee), exist_ok=True)
+        shutil.move(os.path.dirname(e), os.path.abspath(os.path.join(ee, "..")))
+        if manifest.get(e):
+            manifest.pop(e)
+        e = e.replace("/upcoming/", "/past/")
+        upcoming = "past"
 
     entry = info
     entry["upcoming"] = upcoming == "upcoming"
     entry["datetime"] = int(dtime.timestamp())
     entry["hooked"] = []
     manifest[e] = entry
+
+for k in manifest:
+    if not os.path.isfile(k): manifest.pop(k)
 
 with open(manifest_path, "w") as f:
     f.write(json.dumps(manifest, indent=4))
