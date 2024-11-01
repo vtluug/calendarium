@@ -30,7 +30,7 @@ with open(argv[1], "r") as f:
         dtime = datetime.datetime.fromtimestamp(int(e["datetime"]))
         e["datetime"] = dtime
         e["description"] = e["description"].replace("\n", "<br>")
-        e["wiki"] = f"<emp><a href='/wiki/VTLUUG:{dtime.date().isoformat()}'>(wiki)</a></emp>" if not e["upcoming"] else ""
+        e["wiki"] = f"<emp><a href='/wiki/VTLUUG:{dtime.date().isoformat()}' target='_blank'>(wiki)</a></emp>" if not e["upcoming"] else ""
         if e["upcoming"]: upcoming += template_replace(revent, e)
         else: past += template_replace(revent, e)
 
