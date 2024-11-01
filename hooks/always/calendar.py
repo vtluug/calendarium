@@ -27,8 +27,10 @@ revents = fevents.read()
 with open(argv[1], "r") as f:
     events = json.loads(f.read())
     for e in events.values():
-        e["datetime"] = datetime.datetime.fromtimestamp(int(e["datetime"]))
+        dtime = datetime.datetime.fromtimestamp(int(e["datetime"]))
+        e["datetime"] = dtime
         e["description"] = e["description"].replace("\n", "<br>")
+        e["wiki"] = f"<emp><a href='/wiki/VTLUUG:{dtime.date().isoformat()}'>(wiki)</a></emp>" if not e["upcoming"] else ""
         if e["upcoming"]: upcoming += template_replace(revent, e)
         else: past += template_replace(revent, e)
 
