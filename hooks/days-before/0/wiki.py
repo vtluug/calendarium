@@ -30,6 +30,8 @@ def update_for(event):
 
     # make new meeting
     page = site.pages["VTLUUG:"+dtime.date().isoformat()]
+    if page.exists:
+        return
     text = """
 [[$$prevmeeting$$|Previous Meeting]]
 
@@ -76,8 +78,7 @@ Last Meeting: [[$$prevmeeting$$]]
 
 Upcoming Meeting: [[Next_meeting]]"""
     text = text.replace("$$prevmeeting$$", prevmeeting)
-    if not page.exists:
-        page.edit(text, "calendarium was here")
+    page.edit(text, "calendarium was here")
 
 
 # how many days before we're looking for
