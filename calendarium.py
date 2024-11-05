@@ -104,7 +104,9 @@ if not os.path.exists(hooks+"/config.yml"):
         f.write(yaml.safe_dump({
             "calendar-output-path": "/tmp/vtluug-calendar.html",
             "mediawiki-username": "u",
-            "mediawiki-passwd": "p"
+            "mediawiki-passwd": "p",
+            "email-username": "u",
+            "email-passwd": "p"
             }))
 
 for script in os.listdir(hooks+"/always"):
