@@ -59,9 +59,9 @@ for e in past_manifest + upcoming_manifest:
     e = e.replace("//", "/").replace("//", "/").replace("//", "/") #f1x shit hack
     #e = e.replace("/upcoming/", "/aaa/")
     #e = e.replace("/past/", "/aaa/")
-    if manifest.get(e) is not None: continue
 
     exp = e.split("/")
+    if len(exp) < 5: continue
     upcoming = exp[-5]
     year = exp[-4]
     month = exp[-3]
@@ -91,7 +91,7 @@ for e in past_manifest + upcoming_manifest:
     entry["hooked"] = []
     manifest[e] = entry
 
-for k in manifest:
+for k in manifest.copy():
     if not os.path.isfile(k): manifest.pop(k)
 
 with open(manifest_path, "w") as f:
