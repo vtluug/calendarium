@@ -1,4 +1,4 @@
-# ~calendarium~ is a filesystem-based calendar generator for VTLUUG
+# calendarium is a filesystem-based calendar generator for VTLUUG
 
 ## i want to make a new meeting
 
