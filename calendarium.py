@@ -88,7 +88,7 @@ for e in past_manifest + upcoming_manifest:
     entry = info
     entry["upcoming"] = upcoming == "upcoming"
     entry["datetime"] = int(dtime.timestamp())
-    entry["hooked"] = []
+    entry["hooked"] = [] if manifest.get(e) is None else manifest[e]["hooked"]
     manifest[e] = entry
 
 for k in manifest.copy():
