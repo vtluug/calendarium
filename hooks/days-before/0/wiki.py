@@ -13,6 +13,7 @@ with open(cfg, "r") as f:
     cfg = yaml.safe_load(f.read())
 
 def update_for(event):
+    print("updating wiki")
     site = Site("vtluug.org")
     site.login(cfg["mediawiki-username"], cfg["mediawiki-passwd"])
 

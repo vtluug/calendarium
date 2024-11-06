@@ -7,6 +7,7 @@ with open(cfg, "r") as f:
     cfg = yaml.safe_load(f.read())
 
 def acidburn_send(u, p, to, subject, text):
+    print("sending mail")
     smtp = smtplib.SMTP("mail.vtluug.org", port="587")
 
     smtp.ehlo()
