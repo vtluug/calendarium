@@ -24,6 +24,8 @@ fevents = open(templates+"/events.html", "r")
 revent = fevent.read()
 revents = fevents.read()
 
+past_count = 0
+
 with open(argv[1], "r") as f:
     events = json.loads(f.read())
     for e in events.values():
@@ -32,11 +34,14 @@ with open(argv[1], "r") as f:
         e["description"] = e["description"].replace("\n", "<br>")
         e["wiki"] = f"<emp><a href='/wiki/VTLUUG:{dtime.date().isoformat()}' target='_blank'>(wiki)</a></emp>" if not e["upcoming"] else ""
         if e["upcoming"]: upcoming += template_replace(revent, e)
-        else: past += template_replace(revent, e)
+        else:
+            past += template_replace(revent, e)
+            past_count += 1
 
 with open(OUTPUT, "w") as f:
     f.write(template_replace(revents, {
         "past": past,
+        "pastcount": past_count,
         "upcoming": upcoming
     }))
 
