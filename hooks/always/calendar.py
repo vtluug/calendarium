@@ -28,7 +28,7 @@ past_count = 0
 
 with open(argv[1], "r") as f:
     events = json.loads(f.read())
-    for e in events.values():
+    for e in sorted([e for e in events.values()], key=lambda x: int(x["datetime"])):
         dtime = datetime.datetime.fromtimestamp(int(e["datetime"]))
         e["datetime"] = dtime
         e["description"] = e["description"].replace("\n", "<br>")
